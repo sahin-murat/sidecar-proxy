@@ -1,6 +1,9 @@
 package main
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"github.com/gofiber/fiber/v2"
+	"sidecar-proxy/internal/routes"
+)
 
 var allowedList []string
 
@@ -17,6 +20,8 @@ func main() {
 	}
 
 	sideCarApplication := fiber.New()
+
+	routes.Initialize(sideCarApplication)
 
 	err := sideCarApplication.Listen(":333")
 	if err != nil {
