@@ -20,6 +20,6 @@ docker compose up
 
 ```
 
-go test
+go test ./...
 
 ```
