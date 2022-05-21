@@ -8,22 +8,22 @@ import (
 
 func TestValidator(t *testing.T) {
 	var cases = []struct {
-		path      string
-		expection bool
+		path        string
+		expectation bool
 	}{
-		{"company", true},
-		{"tenant/sj3co3s4", false},
-		{"company/sd45f768", true},
-		{"account/acc74850", true},
-		{"company/account", true},
-		{"acc734340", true},
-		{"account/acc234234/user", true},
-		{"account/blocked", false},
-		{"tenant/account/blocked", true},
-		{"tenant/account/acc23849", false},
+		{"/company", true},
+		{"/tenant/sj3co3s4", false},
+		{"/company/sd45f768", true},
+		{"/account/acc74850", true},
+		{"/company/account", true},
+		{"/acc734340", true},
+		{"/account/acc234234/user", true},
+		{"/account/blocked", true}, // Since we have /account/:id route this should be always true, blocked word is read as :id param here
+		{"/tenant/account/blocked", true},
+		{"/tenant/account/acc23849", false},
 	}
 
 	for _, tc := range cases {
-		require.Equal(t, tc.expection, ValidatePath(tc.path), "Test is failing!")
+		require.Equal(t, tc.expectation, ValidatePath(tc.path), "Test is failing!")
 	}
 }

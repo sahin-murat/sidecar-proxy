@@ -2,24 +2,13 @@ package main
 
 import (
 	"github.com/gofiber/fiber/v2"
+	"sidecar-proxy/global"
 	"sidecar-proxy/internal/routes"
 )
 
-var allowedList []string
-
 func main() {
-	allowedList = []string{
-		"/company/",
-		"/company/{id}",
-		"/company/account",
-		"/account",
-		"/account/{id}",
-		"/{id}",
-		"/account/{id}/user",
-		"/tenant/account/blocked",
-	}
-
 	sideCarApplication := fiber.New()
+
 
 	routes.Initialize(sideCarApplication)
 
@@ -31,6 +20,13 @@ func main() {
 }
 
 func ValidatePath(path string) bool {
-	// Some magic here...
+
+	//Check if given path is allowed, if yes  return true
+	for _, allowedPath := range global.AllowedRoutes {
+		if _,ok := allowedPath.Match(path); ok {
+			return true
+		}
+	}
+
 	return false
 }
