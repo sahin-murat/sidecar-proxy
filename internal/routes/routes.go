@@ -6,6 +6,6 @@ import "github.com/gofiber/fiber/v2"
 func Initialize(app *fiber.App) {
 	api := app.Group("/api")
 
-	// Version group will be handled later
+	// TODO: Version group will be handled later
 	api.Group("/v1")
 }

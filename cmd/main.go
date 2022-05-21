@@ -23,8 +23,9 @@ func main() {
 
 	routes.Initialize(sideCarApplication)
 
-	err := sideCarApplication.Listen(":333")
+	err := sideCarApplication.Listen(":3333")
 	if err != nil {
+
 		panic(err)
 	}
 }

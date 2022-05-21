@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: sidecar-proxy
+    image: sidecar-proxy
+    build:
+      context: .
+      target: development
+    volumes:
+      - .:/app
+    ports:
+      - 3333:3333
