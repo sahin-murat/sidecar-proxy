@@ -5,6 +5,7 @@ go 1.17
 require (
 	github.com/gofiber/fiber/v2 v2.33.0
 	github.com/stretchr/testify v1.7.1
+	github.com/ucarion/urlpath v0.0.0-20200424170820-7ccc79b76bbb
 )
 
 require (
