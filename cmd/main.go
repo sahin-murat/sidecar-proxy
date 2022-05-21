@@ -9,6 +9,15 @@ import (
 func main() {
 	sideCarApplication := fiber.New()
 
+	//Middleware that checks if the http request has allowed path
+	//If not allowed returns 406 - Not Acceptable status
+	sideCarApplication.Use(func(c *fiber.Ctx) error {
+		if !ValidatePath(c.Path()){
+			return c.SendStatus(406)
+		}
+
+		return c.Next()
+	})
 
 	routes.Initialize(sideCarApplication)
 
