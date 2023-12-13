@@ -21,6 +21,7 @@ func TestValidator(t *testing.T) {
 		{"/account/blocked", true}, // Since we have /account/:id route this should be always true, blocked word is read as :id param here
 		{"/tenant/account/blocked", true},
 		{"/tenant/account/acc23849", false},
+		{"/tenant/account/acc23848", false},
 	}
 
 	for _, tc := range cases {
